@@ -6,7 +6,7 @@ const { MongoClient } = require("mongodb");
 const admin = require("firebase-admin");
 const ObjectId = require("mongodb").ObjectId;
 const stripe = require("stripe")(process.env.STRIPE_SECRET);
-// const fileUpload = require("express-fileUpload");
+const fileUpload = require("express-fileUpload");
 
 const port = process.env.PORT || 5000;
 
@@ -18,7 +18,7 @@ admin.initializeApp({
 
 app.use(cors());
 app.use(express.json());
-// app.use(fileUpload());
+app.use(fileUpload());
 
 const uri = `mongodb+srv://${process.env.DB_USER}:${process.env.DB_PASS}@cluster0.1wea1.mongodb.net/myFirstDatabase?retryWrites=true&w=majority`;
 const client = new MongoClient(uri, {
